@@ -4,19 +4,18 @@ vault {
 
 auto_auth {
   method {
-    type = "token_file"
-    config = {
-      token_file_path = ""
-    }
+    type = ""
+    config = {}
   }
 }
 
+# Retrieve a new token from Vault every 50 minutes.
 template_config {
-  exit_on_retry_failure = true
   static_secret_render_interval = "50m"
 }
 
+# Output the token to a file along with the token's expiration time.
 template {
-  contents = "{{ with secret \"gcp/static-account/service-account-1/token\" }}{{ .Data | toUnescapedJSON }}{{ end }}"
-  destination = "./token-data.json"
+  contents = "{{ with secret \"path/to/gcp-account/token\" }}{{ .Data | toUnescapedJSON }}{{ end }}"
+  destination = "/path/to/token-data.json"
 }
