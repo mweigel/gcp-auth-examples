@@ -1,2 +1,3 @@
 .venv
 .vscode
+go-examples/vault-agent/example
